@@ -1,0 +1,48 @@
+create table Products
+(
+    ID int primary key identity (1, 1), 
+    NAME nvarchar(128) not null
+);
+ 
+create table Categories
+(
+    ID int primary key identity (1, 1), 
+    NAME nvarchar(128) not null
+);
+ 
+create table ProductCategories
+(
+    ID int primary key identity (1, 1), 
+    ProductId int,
+    CategoryId int
+);
+ 
+INSERT INTO Products
+    ([name])
+VALUES
+    ('Bread'),
+    ('T-shirt'),
+    ('golden ring'),
+    ('chair')
+;
+ 
+INSERT INTO Categories
+    ([name])
+VALUES
+    ('food'),
+    ('clothes'),
+    ('top-clothes')
+;
+ 
+insert into ProductCategories
+  ([ProductId],[CategoryId])
+VALUES
+  (1,1),
+  (2,2),
+  (2,3)
+;
+//-------------------------------------------------------------------------------------------------
+ 
+Select p.name as Product,c.name as Category from Products p 
+left join ProductCategories pc on p.id = pc.ProductId
+left join Categories c on pc.CategoryId = c.Id
